@@ -1,0 +1,10 @@
+---
+  env:
+    node: true
+    mocha: true
+  rules:
+    # Turn off linter nagging for shouldjs type assertions,
+    # for example: response.should.be.a.Promise().
+    new-cap:
+      - 2
+      - properties: false

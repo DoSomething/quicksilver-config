@@ -1,0 +1,37 @@
+{
+  "name": "quicksilver-config",
+  "version": "0.0.0",
+  "description": "A utility Node module to provide common Quicksilver settings.",
+  "main": "./lib/quicksilver-config-client",
+  "scripts": {
+    "test": "npm run lint && mocha",
+    "lint": "eslint test/*.js lib/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DoSomething/quicksilver-config.git"
+  },
+  "keywords": [
+    "DoSomething.org"
+  ],
+  "author": "Darren Douglas Lee <dlee@dosomething.org> (http://dosomething.org)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DoSomething/quicksilver-config/issues"
+  },
+  "homepage": "https://github.com/DoSomething/quicksilver-config#readme",
+  "engines": {
+    "node": ">=4.4.x"
+  },
+  "devDependencies": {
+    "@dosomething/eslint-config": "^1.1.1",
+    "eslint": "^2.10.2",
+    "eslint-plugin-react": "^5.1.1",
+    "mocha": "^2.5.2",
+    "dotenv": "^2.0.0",
+    "should": "^8.4.0"
+  },
+  "dependencies": {
+    "superagent": "^2.0.0"
+  }
+}

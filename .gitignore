@@ -1,3 +1,7 @@
+# User specific
+.DS_Store
+.idea
+
 # Logs
 logs
 *.log
@@ -35,3 +39,6 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
+
+# Dotenv
+.env
