@@ -5,7 +5,7 @@
   "main": "./lib/quicksilver-config-client",
   "scripts": {
     "test": "npm run lint && mocha",
-    "lint": "eslint test/*.js lib/*.js",
+    "lint": "eslint test/*.js lib/*.js"
   },
   "repository": {
     "type": "git",
