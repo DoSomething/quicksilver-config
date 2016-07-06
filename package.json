@@ -30,8 +30,5 @@
     "mocha": "^2.5.2",
     "dotenv": "^2.0.0",
     "should": "^8.4.0"
-  },
-  "dependencies": {
-    "superagent": "^2.0.0"
   }
 }
