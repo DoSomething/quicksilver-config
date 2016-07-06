@@ -27,8 +27,8 @@ describe('QuicksilverConfigClient', () => {
       (() => new QuicksilverConfigClient()).should.throw(TypeError);
     });
 
-    // Check API base URL.
-    it('base URL option should be set', () => {
+    // Check QS_CONFIG_PATH has a value.
+    it('QS_CONFIG_PATH in .env should be set', () => {
       process.env.QS_CONFIG_PATH.should.be.not.empty();
     });
 
@@ -37,6 +37,13 @@ describe('QuicksilverConfigClient', () => {
       const client = getConfigClient();
       client.should.be.an.instanceof(QuicksilverConfigClient);
       client.should.have.property('qsConfigPath').which.is.not.empty();
+    });
+
+    // Check QS_CONFIG_PATH has valid value by confirming access to the path to the JSON file.
+    it('QS_CONFIG_PATH in .env should point to valid JSON file', () => {
+      const client = getConfigClient();
+      const configFileFound = client.configFileFound();
+      configFileFound.should.equal(true);
     });
   });
 });
