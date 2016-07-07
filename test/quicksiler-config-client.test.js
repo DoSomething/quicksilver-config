@@ -39,4 +39,22 @@ describe('QuicksilverConfigClient', () => {
       client.should.have.property('qsConfigPath').which.is.not.empty();
     });
   });
+
+  // getAllSettings().
+  describe('getAllSettings', () => {
+    // Check getSettings method.
+    it('getAllSettings() should be exposed', () => {
+      getConfigClient().getAllSettings.should.be.a.Function();
+    });
+
+    // Get all settings.
+    it('should return all settings in mb_config.json', () => {
+      const client = getConfigClient();
+      const response = client.getAllSettings();
+      // Check response to be an object.
+      response.should.be.an.instanceOf(QuicksilverConfigClient);
+      // Check response has rabbit property.
+      response.should.have.property('rabbit');
+    });
+  });
 });
