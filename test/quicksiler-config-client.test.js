@@ -1,5 +1,7 @@
 'use strict';
 
+const should = require('should');
+
 /**
  * QuicksilverConfig.test
  */
@@ -35,7 +37,7 @@ describe('QuicksilverConfigClient', () => {
     // Test new instance.
     it('should create new instance configured correctly', () => {
       const client = getConfigClient();
-      client.should.be.an.instanceof(QuicksilverConfigClient);
+      should(client).be.an.instanceOf(QuicksilverConfigClient);
       client.should.have.property('qsConfigPath').which.is.not.empty();
     });
   });
@@ -49,12 +51,19 @@ describe('QuicksilverConfigClient', () => {
 
     // Get all settings.
     it('should return all settings in mb_config.json', () => {
-      const client = getConfigClient();
-      const response = client.getAllSettings();
       // Check response to be an object.
-      response.should.be.an.instanceOf(QuicksilverConfigClient);
+      const client = getConfigClient();
+      should(client).be.an.instanceOf(QuicksilverConfigClient);
+
       // Check response has rabbit property.
-      response.should.have.property('rabbit');
+      client.getAllSettings()
+        .then((response) => {
+          response.should.be.a.Promise();
+          response.should.have.property('rabbit');
+        })
+        .catch(() => {
+          // @todo: Exception logic
+        });
     });
   });
 });
