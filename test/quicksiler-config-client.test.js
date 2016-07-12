@@ -30,7 +30,7 @@ describe('QuicksilverConfigClient', () => {
     });
 
     // Check QS_CONFIG_PATH has a value.
-    it('QS_CONFIG_PATH in .env should be set', () => {
+    it('QS_CONFIG_PATH in process.env should be set', () => {
       process.env.QS_CONFIG_PATH.should.be.not.empty();
     });
 
@@ -42,7 +42,7 @@ describe('QuicksilverConfigClient', () => {
     });
 
     // Check QS_CONFIG_PATH has valid value by confirming access to the path to the JSON file.
-    it('QS_CONFIG_PATH in .env should point to valid JSON file', () => {
+    it('QS_CONFIG_PATH in process.env should point to valid JSON file', () => {
       const client = getConfigClient();
       const configFileFound = client.configFileFound();
       return configFileFound.should.eventually.equal(true);
