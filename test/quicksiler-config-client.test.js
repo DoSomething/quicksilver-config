@@ -56,14 +56,8 @@ describe('QuicksilverConfigClient', () => {
       should(client).be.an.instanceOf(QuicksilverConfigClient);
 
       // Check response has rabbit property.
-      client.getAllSettings()
-        .then((response) => {
-          response.should.be.a.Promise();
-          response.should.have.property('rabbit');
-        })
-        .catch(() => {
-          // @todo: Exception logic
-        });
+      const settings = client.getAllSettings();
+      return settings.should.eventually.have.property('rabbit');
     });
   });
 });
