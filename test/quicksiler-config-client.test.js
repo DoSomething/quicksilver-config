@@ -26,7 +26,10 @@ describe('QuicksilverConfigClient', () => {
     it('should create new instance configured correctly', () => {
       const client = getConfigClient();
       should(client).be.an.instanceOf(QuicksilverConfigClient);
-      client.should.have.property('qsConfigPath').which.is.equal('config.json');
+
+      client
+        .should.have.property('qsConfigPath')
+        .which.is.equal('config/rabbitmq_config.json');
     });
 
     // Check that config.json exists and is a file.
