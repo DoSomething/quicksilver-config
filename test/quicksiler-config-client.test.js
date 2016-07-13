@@ -29,8 +29,8 @@ describe('QuicksilverConfigClient', () => {
       client.should.have.property('qsConfigPath').which.is.equal('config.json');
     });
 
-    // Check QS_CONFIG_PATH has valid value by confirming access to the path to the JSON file.
-    it('config file should be exist', () => {
+    // Check that config.json exists and is a file.
+    it('config file should exist', () => {
       const client = getConfigClient();
       const configFileFound = client.configFileFound();
       return configFileFound.should.eventually.equal(true);
