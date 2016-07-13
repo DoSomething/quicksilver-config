@@ -33,7 +33,7 @@ describe('QuicksilverConfigClient', () => {
     });
 
     // Check that config.json exists and is a file.
-    it('config file should exist', () => {
+    it('RabbitMQ config file be readable', () => {
       const client = getConfigClient();
       const configFileFound = client.configFileFound();
       return configFileFound.should.eventually.equal(true);
@@ -48,7 +48,7 @@ describe('QuicksilverConfigClient', () => {
     });
 
     // Get all settings.
-    it('should return all settings in the config file', () => {
+    it('should return all settings in RabbitMQ config file', () => {
       // Check response to be an object.
       const client = getConfigClient();
       should(client).be.an.instanceOf(QuicksilverConfigClient);
