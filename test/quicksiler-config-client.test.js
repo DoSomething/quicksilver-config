@@ -33,7 +33,7 @@ describe('QuicksilverConfigClient', () => {
     });
 
     // Check that config.json exists and is a file.
-    it('RabbitMQ config file be readable', () => {
+    it('RabbitMQ config should file be readable', () => {
       const client = getConfigClient();
       const configFileFound = client.configFileFound();
       return configFileFound.should.eventually.equal(true);
