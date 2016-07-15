@@ -58,4 +58,47 @@ describe('QuicksilverConfigClient', () => {
       return settings.should.eventually.have.property('rabbit');
     });
   });
+
+  // getExchangeSettings().
+  describe.skip('getExchangeSettings()', () => {
+    // Check getSettings method.
+    it('should be exposed', () => {
+      getConfigClient().getExchangeSettings.should.be.a.Function();
+    });
+
+    // Get all settings.
+    it('should return RabbitMQ exchange settings', () => {
+      const client = getConfigClient();
+      const result = client.getExchangeSettings('transactionalExchange');
+
+      // http://www.squaremobius.net/amqp.node/channel_api.html#channel_assertExchange
+      const expectedKeys = [
+        'name',
+        'type',
+        'options',
+      ];
+
+      // https://www.rabbitmq.com/tutorials/amqp-concepts.html#exchanges
+      const expectedTypes = [
+        'direct',
+        'fanout',
+        'topic',
+        'match',
+        'headers',
+      ];
+
+      return result.should.eventually.match((exchange) => {
+        exchange.should.have.keys(expectedKeys);
+        exchange.name.should.be.a.String();
+        exchange.type.should.be.equalOneOf(expectedTypes);
+        // @todo: check options.
+        // See http://www.squaremobius.net/amqp.node/channel_api.html#channel_assertExchange
+        // 'durable',
+        // 'internal',
+        // 'autoDelete',
+        // 'alternateExchange',
+        // 'arguments'
+      });
+    });
+  });
 });
