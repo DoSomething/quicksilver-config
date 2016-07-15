@@ -72,7 +72,7 @@ describe('QuicksilverConfigClient', () => {
       const result = client.getExchangeSettings('transactionalExchange');
 
       // http://www.squaremobius.net/amqp.node/channel_api.html#channel_assertExchange
-      const expectedKeys = [
+      const expectedSettings = [
         'name',
         'type',
         'options',
@@ -87,17 +87,26 @@ describe('QuicksilverConfigClient', () => {
         'headers',
       ];
 
+      const expectedOptions = [
+        'durable',
+        'internal',
+        'autoDelete',
+        'alternateExchange',
+        'arguments',
+      ];
+
       return result.should.eventually.match((exchange) => {
-        exchange.should.have.keys(expectedKeys);
+        exchange.should.have.keys(expectedSettings);
         exchange.name.should.be.a.String();
         exchange.type.should.be.equalOneOf(expectedTypes);
-        // @todo: check options.
-        // See http://www.squaremobius.net/amqp.node/channel_api.html#channel_assertExchange
-        // 'durable',
-        // 'internal',
-        // 'autoDelete',
-        // 'alternateExchange',
-        // 'arguments'
+
+        const options = exchange.options;
+        options.should.have.keys(expectedOptions);
+        options.durable.should.be.a.Boolean();
+        options.internal.should.be.a.Boolean();
+        options.autoDelete.should.be.a.Boolean();
+        options.alternateExchange.should.be.a.String();
+        options.arguments.should.be.an.Object();
       });
     });
   });
