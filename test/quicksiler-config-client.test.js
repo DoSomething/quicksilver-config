@@ -58,4 +58,56 @@ describe('QuicksilverConfigClient', () => {
       return settings.should.eventually.have.property('rabbit');
     });
   });
+
+  // getExchangeSettings().
+  describe('getExchangeSettings()', () => {
+    // Test getExchangeSettings() presence.
+    it('should be exposed', () => {
+      getConfigClient().getExchangeSettings.should.be.a.Function();
+    });
+
+    // Test transactionalExchange settings.
+    it('should return RabbitMQ exchange settings', () => {
+      const client = getConfigClient();
+      const result = client.getExchangeSettings('transactionalExchange');
+
+      // http://www.squaremobius.net/amqp.node/channel_api.html#channel_assertExchange
+      const expectedSettings = [
+        'name',
+        'type',
+        'options',
+      ];
+
+      // https://www.rabbitmq.com/tutorials/amqp-concepts.html#exchanges
+      const expectedTypes = [
+        'direct',
+        'fanout',
+        'topic',
+        'match',
+        'headers',
+      ];
+
+      const expectedOptions = [
+        'durable',
+        'internal',
+        'autoDelete',
+        'alternateExchange',
+        'arguments',
+      ];
+
+      return result.should.eventually.match((exchange) => {
+        exchange.should.have.keys(expectedSettings);
+        exchange.name.should.be.a.String();
+        exchange.type.should.be.equalOneOf(expectedTypes);
+
+        const options = exchange.options;
+        options.should.have.keys(expectedOptions);
+        options.durable.should.be.a.Boolean();
+        options.internal.should.be.a.Boolean();
+        options.autoDelete.should.be.a.Boolean();
+        options.alternateExchange.should.be.a.String();
+        options.arguments.should.be.an.Object();
+      });
+    });
+  });
 });
