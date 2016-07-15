@@ -60,13 +60,13 @@ describe('QuicksilverConfigClient', () => {
   });
 
   // getExchangeSettings().
-  describe.skip('getExchangeSettings()', () => {
-    // Check getSettings method.
+  describe('getExchangeSettings()', () => {
+    // Test getExchangeSettings() presence.
     it('should be exposed', () => {
       getConfigClient().getExchangeSettings.should.be.a.Function();
     });
 
-    // Get all settings.
+    // Test transactionalExchange settings.
     it('should return RabbitMQ exchange settings', () => {
       const client = getConfigClient();
       const result = client.getExchangeSettings('transactionalExchange');
